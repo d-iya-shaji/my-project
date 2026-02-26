@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Age Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            /* Aesthetic soft pastel sky background */
+            background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e") 
+                        no-repeat center center/cover;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            width: 320px;
+            color: #fff;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #333;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            background: #f1f1f1;
+            transform: scale(1.05);
+        }
+
+        #result {
+            margin-top: 15px;
+            font-size: 14px;
+            min-height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h2><b>Age Calculator</b></h2>
+
+        <input type="date" name="DOB" id="dob">
+        <button id="calculateBtn">Calculate Age</button>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+        document.getElementById("calculateBtn").addEventListener("click", agecal);
+
+        function agecal() {
+            const dob = document.getElementById("dob").value;
+            const result = document.getElementById("result");
+
+            if (!dob) {
+                result.innerText = "Please select a date.";
+                return;
+            }
+
+            const dobinput = new Date(dob);
+            const today = new Date();
+
+            const diffTime = Math.abs(today - dobinput);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            result.innerText = "You have lived approximately " + diffDays + "days";
+        }
+    </script>
+
+</body>
+</html>
